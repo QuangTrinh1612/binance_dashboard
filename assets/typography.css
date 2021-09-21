@@ -1,15 +1,14 @@
 body {
     font-family: sans-serif;
-    background-color: white;
+    background-color: #1a1823;
 }
 h1 {
-    color: #e76f51;
+    color: #f7931a;
     padding-top: 20;
     text-align: center;
 }
 .chart_title {
-    background-color: #e76f51;
-    color: white;
+    color: #f7931a;
 }
 .app_slicer {
     width: 510;

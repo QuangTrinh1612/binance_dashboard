@@ -20,7 +20,7 @@ app.layout = html.Div([
     , html.Div(
         className = 'app_slicer'
         , children = [
-            html.H3('Enter a crypto currency pair:', style={'paddingRight':'30px'})
+            html.H3('Enter a crypto currency pair:', style={'paddingRight':'30px', 'color': '#d3d3d3'})
             , dcc.Dropdown(
                 id = 'crypto_pair_options'
                 , options = currency_pair
@@ -32,7 +32,7 @@ app.layout = html.Div([
     , html.Div(
         className = 'app_slicer'
         , children = [
-            html.H3('Select start and end dates:')
+            html.H3('Select start and end dates:', style={'color': '#d3d3d3'})
             , dcc.DatePickerRange(
                 id = 'cryto_date_picker'
                 , min_date_allowed = dt.datetime(2018, 1, 1)
@@ -45,7 +45,7 @@ app.layout = html.Div([
     , html.Div(
         className = 'app_slicer'
         , children = [
-            html.H3('Select intervals:')
+            html.H3('Select intervals:', style={'color': '#d3d3d3'})
             , dcc.Dropdown(
                 id = 'kline_intervals'
                 , options = kline_intervals
@@ -118,7 +118,7 @@ def update_graph(n_clicks:int, currency_pair:str, start_date:str, end_date:str, 
         x = df.open_date
         , open = df.open, high = df.high
         , low = df.low, close = df.close
-        , increasing_line_color= 'cyan', decreasing_line_color= 'gray'
+        , increasing_line_color= '#90EE90', decreasing_line_color= '#FF7F7F'
     )
     trace_volume = go.Bar(
         x = df.open_date
@@ -135,6 +135,7 @@ def update_graph(n_clicks:int, currency_pair:str, start_date:str, end_date:str, 
         , name = 'Number of trades'
         , offsetgroup = 1
         , yaxis = 'y2'
+        , marker_color = '#FF7F7F'
     )
     trace_price_change = go.Scatter(
         x = df.open_date
@@ -146,20 +147,44 @@ def update_graph(n_clicks:int, currency_pair:str, start_date:str, end_date:str, 
     # Dash Plotly Figures
     price_fig = go.Figure(
         data = trace_price
-        , layout = go.Layout(title=currency_pair+' Candlestick Graph')
+        , layout = go.Layout(
+            title = {
+                'text': currency_pair + ' Candlestick Graph'
+                , 'font': {'color': '#d3d3d3'}
+            }
+            , paper_bgcolor = '#232533'
+            , plot_bgcolor = '#232533'
+            , xaxis = {'showgrid': False, 'color': '#d3d3d3'}
+            , yaxis = {'showgrid': False, 'zeroline': False, 'color': '#d3d3d3'}
+        )
     )
     volume_fig = go.Figure(
         data = [trace_volume, trace_num_trade]
         , layout = go.Layout(
-            title=currency_pair+' Volume Bar Chart'
-            , yaxis={'title':'Trade Volume'}
-            , yaxis2={'title':'Number of Trades', 'overlaying':'y', 'side':'right'}
-            , legend={'yanchor':'top', 'xanchor':'left'}
+            title = {
+                'text': currency_pair + ' Volume Bar Chart'
+                , 'font': {'color': '#d3d3d3'}
+            }
+            , paper_bgcolor = '#232533'
+            , plot_bgcolor = '#232533'
+            , xaxis = {'showgrid': False, 'color': '#d3d3d3'}
+            , yaxis = {'title':'Trade Volume', 'showgrid': False, 'zeroline': False, 'color': '#d3d3d3'}
+            , yaxis2 = {'title':'Number of Trades', 'overlaying':'y', 'side':'right', 'showgrid': False, 'zeroline': False, 'color': '#d3d3d3'}
+            , legend = {'yanchor':'top', 'xanchor':'left', 'font':{'color': '#d3d3d3'}}
         )
     )
     price_change_fig = go.Figure(
         data = trace_price_change
-        , layout = go.Layout(title=currency_pair+' Price Change - Line Graph')
+        , layout = go.Layout(
+            title = {
+                'text': currency_pair + ' Price Change - Line Graph'
+                , 'font': {'color': '#d3d3d3'}
+            }
+            , paper_bgcolor = '#232533'
+            , plot_bgcolor = '#232533'
+            , xaxis = {'showgrid': False, 'color': '#d3d3d3'}
+            , yaxis = {'showgrid': False, 'zeroline': False, 'color': '#d3d3d3'}
+        )
     )
 
     return price_fig, volume_fig, price_change_fig
