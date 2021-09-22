@@ -3,12 +3,16 @@ body {
     background-color: #1a1823;
 }
 h1 {
-    color: #f7931a;
+    color: #3D52D5;
     padding-top: 20;
     text-align: center;
 }
+h4 {
+    padding-right: 30;
+    color: #A1B5D7;
+}
 .chart_title {
-    color: #f7931a;
+    color: #3D52D5;
 }
 .app_slicer {
     width: 510;

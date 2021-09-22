@@ -20,7 +20,7 @@ app.layout = html.Div([
     , html.Div(
         className = 'app_slicer'
         , children = [
-            html.H3('Enter a crypto currency pair:', style={'paddingRight':'30px', 'color': '#d3d3d3'})
+            html.H4('Enter a crypto currency pair:')
             , dcc.Dropdown(
                 id = 'crypto_pair_options'
                 , options = currency_pair
@@ -32,7 +32,7 @@ app.layout = html.Div([
     , html.Div(
         className = 'app_slicer'
         , children = [
-            html.H3('Select start and end dates:', style={'color': '#d3d3d3'})
+            html.H4('Select start and end dates:')
             , dcc.DatePickerRange(
                 id = 'cryto_date_picker'
                 , min_date_allowed = dt.datetime(2018, 1, 1)
@@ -41,11 +41,12 @@ app.layout = html.Div([
                 , end_date = dt.datetime.today()
             )
         ]
+        , style = {'marginLeft':'30px'}
     )
     , html.Div(
         className = 'app_slicer'
         , children = [
-            html.H3('Select intervals:', style={'color': '#d3d3d3'})
+            html.H4('Select intervals:')
             , dcc.Dropdown(
                 id = 'kline_intervals'
                 , options = kline_intervals
@@ -53,15 +54,25 @@ app.layout = html.Div([
                 , multi = False
             )
         ]
+        , style = {'marginLeft':'30px'}
     )
     , html.Div([
         html.Button(
             id = 'submit_button'
             , n_clicks = 0
             , children = 'Submit'
-            , style = {'fontSize':24, 'marginLeft':'30px'}
+            , style = {'fontSize':20, 'marginLeft':'30px'}
         )
-    ], style={'display':'inline-block'})
+    ], style={'display':'inline-block', 'marginLeft':'30px', 'marginTop':'60px'})
+    , html.Div(
+        className = 'chart_title'
+        , children = [
+            html.H3('Final report')
+        ]
+    )
+    , dcc.Graph(
+        id = 'volume_indicator'
+    )
     , html.Div(
         className = 'chart_title'
         , children = [
@@ -96,6 +107,7 @@ app.layout = html.Div([
         Output(component_id='price_candlestick', component_property='figure')
         , Output(component_id='volume_bar', component_property='figure')
         , Output(component_id='price_change', component_property='figure')
+        , Output(component_id='volume_indicator', component_property='figure')
     ]
     , [Input('submit_button', 'n_clicks')]
     , [
@@ -143,6 +155,12 @@ def update_graph(n_clicks:int, currency_pair:str, start_date:str, end_date:str, 
         , mode = 'lines'
         , name = 'Price Changes'
     )
+    trace_volume_indicator = go.Indicator(
+        mode = 'number+delta'
+        , value = df.volume.sum()
+        , title = {'text': "Current Volume<br><span style='font-size:0.8em;color:gray'>Subtitle</span>"}
+        # , delta = {'reference': 1000000, 'relative': True}
+    )
 
     # Dash Plotly Figures
     price_fig = go.Figure(
@@ -186,8 +204,15 @@ def update_graph(n_clicks:int, currency_pair:str, start_date:str, end_date:str, 
             , yaxis = {'showgrid': False, 'zeroline': False, 'color': '#d3d3d3'}
         )
     )
+    volume_indicator_fig = go.Figure(
+        data = trace_volume_indicator
+        , layout = go.Layout(
+            paper_bgcolor = '#232533'
+            , plot_bgcolor = '#232533'
+        )
+    )
 
-    return price_fig, volume_fig, price_change_fig
+    return price_fig, volume_fig, price_change_fig, volume_indicator_fig
 
 if __name__ == '__main__':
     app.run_server(debug=True)
