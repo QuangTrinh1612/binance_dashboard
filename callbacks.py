@@ -9,7 +9,6 @@ def graph_callbacks(app):
             Output(component_id='price_candlestick', component_property='figure')
             , Output(component_id='volume_bar', component_property='figure')
             , Output(component_id='price_change', component_property='figure')
-            , Output(component_id='volume_indicator', component_property='figure')
         ]
         , [Input('submit_button', 'n_clicks')]
         , [
@@ -57,12 +56,6 @@ def graph_callbacks(app):
             , mode = 'lines'
             , name = 'Price Changes'
         )
-        trace_volume_indicator = go.Indicator(
-            mode = 'number+delta'
-            , value = df.volume.sum()
-            , title = {'text': "Current Volume<br><span style='font-size:0.8em;color:gray'>Subtitle</span>"}
-            # , delta = {'reference': 1000000, 'relative': True}
-        )
 
         # Dash Plotly Figures
         price_fig = go.Figure(
@@ -106,12 +99,5 @@ def graph_callbacks(app):
                 , yaxis = {'showgrid': False, 'zeroline': False, 'color': '#d3d3d3'}
             )
         )
-        volume_indicator_fig = go.Figure(
-            data = trace_volume_indicator
-            , layout = go.Layout(
-                paper_bgcolor = '#232533'
-                , plot_bgcolor = '#232533'
-            )
-        )
 
-        return price_fig, volume_fig, price_change_fig, volume_indicator_fig
+        return price_fig, volume_fig, price_change_fig

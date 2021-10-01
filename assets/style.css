@@ -1,23 +1,114 @@
+/*Fonts ––––––––––––––––––––––––––––––––––––––––––––––––––*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+/* Main Layout ––––––––––––––––––––––––––––––––––––––––––––––––––*/
 body {
-    font-family: sans-serif;
     background-color: #1a1823;
+    color: #d8d8d8;
+    margin: 0;
+    padding: 0;
 }
-h1 {
+h1, h2, h3, h4, h5 {
+    font-family: "Open Sans";
     color: #3D52D5;
-    padding-top: 20;
+    font-weight: bold;
+    letter-spacing: 2.1px;
+    font-size: 21px;
+    padding-left: 12px;
+}
+p {
+    font-family: "Open Sans";
+    font-weight: 400;
+    font-size: 14px;
+    padding-left: 12px;
+}
+.bg-grey{
+    background-color: #31302F;
+}
+
+/* Grid –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.columns {
+    width: 100%;
+    float: left;
+    box-sizing: border-box;
+}
+.four.columns {
+    width: 30.6666666667%;
+}
+.eight.columns {
+    width: 65.3333333333%;
+}
+
+/* Graph Control Objects ––––––––––––––––––––––––––––––––––––––––––––––––––*/
+.div-user-controls {
+    padding-left: 55px;
+    padding-top: 64px;
+}
+.div-for-dropdown {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.div-for-button {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.div-for-slider {
+    width: 97%;
     text-align: center;
 }
-h4 {
-    padding-right: 30;
-    color: #A1B5D7;
+.div-for-chart {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
 }
-.chart_title {
-    color: #3D52D5;
+#price_candlestick {
+    flex-grow: 1;
 }
-.app_slicer {
-    width: 510;
-    display: inline-block;
-    vertical-align: top;
-    padding-left: 40;
-    margin-bottom: 20;
+#volume_bar {
+    flex-grow: 1;
+}
+#price_change {
+    flex-grow: 1;
+}
+.mapboxgl-canvas, .mapboxgl-map {
+    min-width: 100%;
+}
+.Select-control, .Select-menu-outer, .Select-multi-value-wrapper, .select-up, .is-open .Select-control {
+    background-color: #1E1E1E;
+    color: white;    
+}
+.Select-control{
+    border: 0.5px solid #dbdbdb44;
+}
+.has-value.Select--single>.Select-control .Select-value .Select-value-label, .has-value.is-pseudo-focused.Select--single>.Select-control .Select-value .Select-value-label {
+    color: white;
+}
+._dash-app-content {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+}
+.has-value.Select--single>.Select-control .Select-value .Select-value-label, .has-value.is-pseudo-focused.Select--single>.Select-control .Select-value .Select-value-label{
+    color: #d8d8d8;
+    font-weight: 400;
+    font-size: 14px;
+}
+#cryto_date_picker {
+    width: 100%;
+}
+
+/* Clearing –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.container:after, .row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
