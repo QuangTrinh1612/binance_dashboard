@@ -16,6 +16,9 @@ h1, h2, h3, h4, h5 {
     font-size: 21px;
     padding-left: 12px;
 }
+div div h4 {
+    padding-left: 3%;
+}
 p {
     font-family: "Open Sans";
     font-weight: 400;
@@ -41,10 +44,10 @@ p {
     box-sizing: border-box;
 }
 .four.columns {
-    width: 30.6666666667%;
+    width: 25%;
 }
 .eight.columns {
-    width: 65.3333333333%;
+    width: 75%;
 }
 
 /* Graph Control Objects ––––––––––––––––––––––––––––––––––––––––––––––––––*/
@@ -53,6 +56,7 @@ p {
     padding-top: 64px;
 }
 .div-for-dropdown {
+    width: 80%;
     padding-top: 12px;
     padding-bottom: 12px;
 }
@@ -72,43 +76,80 @@ p {
 }
 #price_candlestick {
     flex-grow: 1;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 #volume_bar {
     flex-grow: 1;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 #price_change {
     flex-grow: 1;
+    padding-left: 3%;
+    padding-right: 3%;
 }
-.mapboxgl-canvas, .mapboxgl-map {
-    min-width: 100%;
-}
+
+/* Graph Control Objects ––––––––––––––––––––––––––––––––––––––––––––––––––*/
 .Select-control, .Select-menu-outer, .Select-multi-value-wrapper, .select-up, .is-open .Select-control {
     background-color: #1E1E1E;
-    color: white;    
+    color: white;
 }
-.Select-control{
+.Select-control {
     border: 0.5px solid #dbdbdb44;
+    transition-duration: 1s;
+    transition-property: border-color, box-shadow, margin-top;    
+}
+.Select-control:hover {
+    border-color:  lightcoral;
+    box-shadow: 6px 6px 2px 1px mediumvioletred;
+    margin-top: 2%;
 }
 .has-value.Select--single>.Select-control .Select-value .Select-value-label, .has-value.is-pseudo-focused.Select--single>.Select-control .Select-value .Select-value-label {
     color: white;
 }
-._dash-app-content {
-    overflow-x: hidden;
-    overflow-y: hidden;
-    position: relative;
-}
-.has-value.Select--single>.Select-control .Select-value .Select-value-label, .has-value.is-pseudo-focused.Select--single>.Select-control .Select-value .Select-value-label{
-    color: #d8d8d8;
-    font-weight: 400;
-    font-size: 14px;
-}
-#cryto_date_picker {
+.DateInput_input.DateInput_input_1 {
+    background-color: #1e1e1e;
+    color: white;
     width: 100%;
+    font-size: 15px;
+}
+.DateRangePicker_picker, .DateRangePickerInput__withBorder, .DayPicker_focusRegion {
+    border-radius: 3px;
+    border: 0.5px solid #dbdbdb44;
+    color: #dbdbdb;
+    background-color: #1e1e1e;
+}
+.CalendarMonthGrid {
+    background-color: #1e1e1e;
+}
+.CalendarMonth {
+    background-color: #1e1e1e;
+}
+.CalendarMonth_caption, .DayPicker_weekHeader {
+    color: white;
+}
+.CalendarDay {
+    background-color: #3D52D5;
+    border-color: white;
+}
+.DateRangePickerInput_arrow_svg, .DateRangePickerInput_arrow_svg_1 {
+    Height: 20px;
+    Width: 20px;
 }
 
-/* Clearing –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.container:after, .row:after {
-    content: "";
-    display: table;
-    clear: both;
+/* Submit Button ––––––––––––––––––––––––––––––––––––––––––––––––––*/
+#submit_button {
+    border-radius: 3px;
+    border: 0.5px solid #dbdbdb44;
+    background-color: #1e1e1e;
+    color: white;
+    font-size: 16px;
+    transition-duration: 1s;
+    transition-property: border-color, box-shadow, margin-top;
+}
+#submit_button:hover {
+    border-color:  lightcoral;
+    box-shadow: 6px 6px 2px 1px mediumvioletred;
+    margin-top: 2%;
 }
